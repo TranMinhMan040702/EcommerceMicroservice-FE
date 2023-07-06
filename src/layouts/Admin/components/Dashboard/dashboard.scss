@@ -1,0 +1,69 @@
+.icontext {
+    display: flex;
+    align-items: center;
+    .icon {
+        position: relative;
+        flex-shrink: 0;
+        margin-right: 20px;
+        margin-bottom: 0;
+        width: 48px;
+        height: 48px;
+        line-height: 48px !important;
+        font-size: 1.25rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    .text {
+        h6 {
+            font-weight: 700;
+        }
+    }
+}
+tbody {
+    font-size: 16px;
+    text-align: center;
+    .badge {
+        display: inline-block;
+        padding: 0.35em 0.65em;
+        font-weight: 700;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        border-radius: 0.25rem;
+    }
+    .alert-success {
+        color: #0f5132;
+        background-color: #d1e7dd;
+        border-color: #badbcc;
+    }
+    .alert-danger {
+        color: #842029;
+        background-color: #f8d7da;
+        border-color: #f5c2c7;
+    }
+    .not-process {
+        background-color: #336b7d;
+        border-color: #336b7d;
+    }
+    .processing {
+        background-color: #f6a500;
+        border-color: #f6a500;
+    }
+    .shipped {
+        background-color: #635d40;
+        border-color: #635d40;
+    }
+    .delivered {
+        background-color: #198754;
+        border-color: #198754;
+    }
+    .cancelled {
+        background-color: #ee4b46;
+        border-color: #ee4b46;
+    }
+    a {
+        color: #198754;
+    }
+}
