@@ -46,15 +46,16 @@ function Search() {
             toast.warning(notificationNew.message);
         }
     }, [notificationNew]);
-    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    const displayNotifications = async () => {
+
+    const displayNotifications = () => {
         if (notifications.length > 0) {
-            for (const notification of notifications) {
-                if (!notification.status) {
-                    toast.warning(notification.message);
-                    await wait(500);
-                }
-            }
+            notifications.forEach((item) => {
+                setTimeout(() => {
+                    if (!item.status) {
+                        toast.warning(item.message);
+                    }
+                }, 1000);
+            });
         }
     };
 
@@ -130,7 +131,7 @@ function Search() {
     return (
         <div className="search">
             <div className="container">
-                {/* <ToastContainer autoClose={300} pauseOnHover={false} /> */}
+                <ToastContainer autoClose={1000} pauseOnHover={false} />
                 <div className="row">
                     <div className="col-md-3">
                         <Link

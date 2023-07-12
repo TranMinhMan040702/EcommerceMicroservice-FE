@@ -36,7 +36,6 @@ function ProductCard({ product }) {
     };
     return (
         <div className="product">
-            <ToastContainer autoClose={300} pauseOnHover={false} />
             <span className="discount">
                 {handleDiscount(product.price, product.promotionalPrice)}%
             </span>
@@ -67,6 +66,7 @@ function ProductCard({ product }) {
                     </button>
                 </div>
             </div>
+            <ToastContainer autoClose={500} pauseOnHover={false} />
         </div>
     );
 }

@@ -1,20 +1,17 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAuth } from '../../../../hooks';
+import images from '../../../../assets/images';
 import { faBell, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 import config from '../../../../config';
-import images from '../../../../assets/images';
-import accountSlice from '../../../../redux/slice/accountSlice';
-import cartSlice from '../../../../redux/slice/cartSlice';
-import AuthService from '../../../../services/AuthService';
-import NotificationService from '../../../../services/NotificationService';
-import { useAuth } from '../../../../hooks';
 import { useSelector } from 'react-redux';
 import { cartUser, accountUser } from '../../../../redux/selectors';
+import accountSlice from '../../../../redux/slice/accountSlice';
+import cartSlice from '../../../../redux/slice/cartSlice';
 import { useDispatch } from 'react-redux';
+import { useContext, useEffect, useState } from 'react';
 import { RequestParamContext } from '../../../../context';
-import { ToastContainer, toast } from 'react-toastify';
+import AuthService from '../../../../services/AuthService';
 
 import { over } from 'stompjs';
 import SockJS from 'sockjs-client';
@@ -28,35 +25,10 @@ function Search() {
     const { auth, setAuth } = useAuth();
     const { params, setParams } = useContext(RequestParamContext);
     const [notifications, setNotifications] = useState([]);
-    const [notificationNew, setNotificationNew] = useState(null);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         connect();
     }, []);
-    useEffect(() => {
-        getAllNotification();
-    }, [account]);
-    useEffect(() => {
-        displayNotifications();
-    }, [loading]);
-
-    useEffect(() => {
-        if (notificationNew != null) {
-            toast.warning(notificationNew.message);
-        }
-    }, [notificationNew]);
-    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    const displayNotifications = async () => {
-        if (notifications.length > 0) {
-            for (const notification of notifications) {
-                if (!notification.status) {
-                    toast.warning(notification.message);
-                    await wait(500);
-                }
-            }
-        }
-    };
 
     const connect = () => {
         let Sock = new SockJS('http://localhost:8089/ws');
@@ -71,26 +43,13 @@ function Search() {
     const onMessageReceived = (payload) => {
         const notification = JSON.parse(payload.body);
         setNotifications((prevNotifications) => [...prevNotifications, notification]);
-        setNotificationNew(notification);
     };
 
     const onError = (err) => {
         console.log(err);
     };
 
-    const getAllNotification = async () => {
-        try {
-            const response = await NotificationService.getAllByRecipientId(account.id);
-            setNotifications((prev) => [...prev, ...response.data]);
-            setLoading(true);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-
-    const handleNotification = () => {
-        return notifications.filter((notification) => !notification.status).length;
-    };
+    console.log(notifications);
 
     const handleLogout = (e) => {
         e.preventDefault();
@@ -126,11 +85,9 @@ function Search() {
             return { ...prev, search: tag.value };
         });
     };
-    console.log(notifications);
     return (
         <div className="search">
             <div className="container">
-                {/* <ToastContainer autoClose={300} pauseOnHover={false} /> */}
                 <div className="row">
                     <div className="col-md-3">
                         <Link
@@ -163,7 +120,7 @@ function Search() {
                         <div className="notify">
                             <Link>
                                 <FontAwesomeIcon icon={faBell} />
-                                <span className="badge">{handleNotification()}</span>
+                                <span className="badge">{handleTotalCartItems(cart)}</span>
                             </Link>
                         </div>
                         <div className="cart">

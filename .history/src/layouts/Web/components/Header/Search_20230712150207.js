@@ -28,8 +28,7 @@ function Search() {
     const { auth, setAuth } = useAuth();
     const { params, setParams } = useContext(RequestParamContext);
     const [notifications, setNotifications] = useState([]);
-    const [notificationNew, setNotificationNew] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [notificationsDisplayed, setNotificationsDisplayed] = useState([]);
 
     useEffect(() => {
         connect();
@@ -38,24 +37,16 @@ function Search() {
         getAllNotification();
     }, [account]);
     useEffect(() => {
-        displayNotifications();
-    }, [loading]);
+        handleDisplayNotification();
+    }, [notifications]);
 
-    useEffect(() => {
-        if (notificationNew != null) {
-            toast.warning(notificationNew.message);
-        }
-    }, [notificationNew]);
-    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    const displayNotifications = async () => {
-        if (notifications.length > 0) {
-            for (const notification of notifications) {
-                if (!notification.status) {
-                    toast.warning(notification.message);
-                    await wait(500);
-                }
+    const handleDisplayNotification = () => {
+        notifications.forEach((index, item) => {
+            if (!item.status) {
+                toast.warning(item.message);
+                setNotificationsDisplayed((prev) => [...prev, item]);
             }
-        }
+        });
     };
 
     const connect = () => {
@@ -71,7 +62,6 @@ function Search() {
     const onMessageReceived = (payload) => {
         const notification = JSON.parse(payload.body);
         setNotifications((prevNotifications) => [...prevNotifications, notification]);
-        setNotificationNew(notification);
     };
 
     const onError = (err) => {
@@ -81,15 +71,14 @@ function Search() {
     const getAllNotification = async () => {
         try {
             const response = await NotificationService.getAllByRecipientId(account.id);
-            setNotifications((prev) => [...prev, ...response.data]);
-            setLoading(true);
+            setNotifications((prev) => [...prev, response.data]);
         } catch (err) {
             console.log(err);
         }
     };
 
     const handleNotification = () => {
-        return notifications.filter((notification) => !notification.status).length;
+        return notifications.length;
     };
 
     const handleLogout = (e) => {
@@ -130,7 +119,7 @@ function Search() {
     return (
         <div className="search">
             <div className="container">
-                {/* <ToastContainer autoClose={300} pauseOnHover={false} /> */}
+                <ToastContainer autoClose={1000} pauseOnHover={false} />
                 <div className="row">
                     <div className="col-md-3">
                         <Link

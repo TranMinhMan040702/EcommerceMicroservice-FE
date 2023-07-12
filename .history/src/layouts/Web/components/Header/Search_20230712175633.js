@@ -52,7 +52,7 @@ function Search() {
             for (const notification of notifications) {
                 if (!notification.status) {
                     toast.warning(notification.message);
-                    await wait(500);
+                    await wait(300);
                 }
             }
         }
