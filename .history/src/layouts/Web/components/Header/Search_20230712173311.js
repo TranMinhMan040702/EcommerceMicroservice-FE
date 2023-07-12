@@ -52,7 +52,7 @@ function Search() {
             for (const notification of notifications) {
                 if (!notification.status) {
                     toast.warning(notification.message);
-                    await wait(500);
+                    await wait(100);
                 }
             }
         }
@@ -130,7 +130,7 @@ function Search() {
     return (
         <div className="search">
             <div className="container">
-                {/* <ToastContainer autoClose={300} pauseOnHover={false} /> */}
+                <ToastContainer autoClose={300} pauseOnHover={false} />
                 <div className="row">
                     <div className="col-md-3">
                         <Link

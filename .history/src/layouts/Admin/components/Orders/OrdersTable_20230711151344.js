@@ -30,7 +30,6 @@ function OrdersTable() {
         try {
             const response = await OrderService.getAllOrders(requestParams);
             setOrders(response.data);
-            console.log(response.data);
             setLoading(false);
         } catch (err) {
             console.error(err);
@@ -133,7 +132,7 @@ function OrdersTable() {
                                                 <b>
                                                     {order.user.firstName +
                                                         ' ' +
-                                                        order.user.lastName}
+                                                        order.user.lastname}
                                                 </b>
                                             </td>
                                             <td>{order.phone}</td>

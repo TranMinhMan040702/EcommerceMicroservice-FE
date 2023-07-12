@@ -30,7 +30,6 @@ function OrdersTable() {
         try {
             const response = await OrderService.getAllOrders(requestParams);
             setOrders(response.data);
-            console.log(response.data);
             setLoading(false);
         } catch (err) {
             console.error(err);
