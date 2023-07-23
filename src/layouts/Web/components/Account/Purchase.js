@@ -138,8 +138,8 @@ function Purchase() {
                     orders.map((order, index) => {
                         return (
                             <Link
-                                to={config.routes.web.user + '/purchase/order?orderId=' + order.id}
                                 key={index}
+                                to={config.routes.web.user + '/purchase/order?orderId=' + order.id}
                                 className="cart-item"
                             >
                                 <div className="wapper">

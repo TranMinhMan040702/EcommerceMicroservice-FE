@@ -52,7 +52,7 @@ function Delivery({
         <>
             <button
                 type="button"
-                class="btn btn-sm btn-secondary modal-address"
+                className="btn btn-sm btn-secondary modal-address"
                 data-bs-dismiss="modal"
                 onClick={() => setDeliveryCurrent(deliveryOrder)}
             >
@@ -61,7 +61,7 @@ function Delivery({
             <button
                 type="submit"
                 data-bs-dismiss="modal"
-                class="btn btn-sm btn-success"
+                className="btn btn-sm btn-success"
                 onClick={() => setDeliveryOrder(deliveryCurrent)}
             >
                 Xác nhận

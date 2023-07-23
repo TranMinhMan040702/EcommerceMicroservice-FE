@@ -1,9 +1,8 @@
 /* eslint-disable no-undef */
 import { GoogleLogin } from '@react-oauth/google';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import jwtDecode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
-import EmailService from '../../../../services/EmailService';
 import AuthService from '../../../../services/AuthService';
 
 function RegisterGoogle({ setRegister, setLoading }) {

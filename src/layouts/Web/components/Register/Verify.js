@@ -8,7 +8,7 @@ import { createAccount } from '../../../../redux/slice/accountSlice';
 import { getCart } from '../../../../redux/slice/cartSlice';
 import { getAddresses } from '../../../../redux/slice/addressSlice';
 import { getDeliveries } from '../../../../redux/slice/deliverySlice';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import AuthService from '../../../../services/AuthService';
 import config from '../../../../config';
 

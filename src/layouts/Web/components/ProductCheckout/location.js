@@ -55,7 +55,7 @@ function Location({ addresses, addressOrder, addressCurrent, setAddressCurrent, 
         <>
             <button
                 type="button"
-                class="btn btn-sm btn-secondary modal-address"
+                className="btn btn-sm btn-secondary modal-address"
                 data-bs-dismiss="modal"
                 onClick={() => setAddressCurrent(addressOrder)}
             >
@@ -64,7 +64,7 @@ function Location({ addresses, addressOrder, addressCurrent, setAddressCurrent, 
             <button
                 type="submit"
                 data-bs-dismiss="modal"
-                class="btn btn-sm btn-success"
+                className="btn btn-sm btn-success"
                 onClick={() => setAddressOrder(addressCurrent)}
             >
                 Xác nhận

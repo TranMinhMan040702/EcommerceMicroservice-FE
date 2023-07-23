@@ -208,7 +208,7 @@ function Order() {
                                             style={{ background: 'rgb(224, 224, 224)' }}
                                         ></div>
                                         <div
-                                            class="stepper__line-foreground"
+                                            className="stepper__line-foreground"
                                             style={{ ...style }}
                                         ></div>
                                     </div>
@@ -252,7 +252,7 @@ function Order() {
                                             style={{ background: 'rgb(224, 224, 224)' }}
                                         ></div>
                                         <div
-                                            class="stepper__line-foreground"
+                                            className="stepper__line-foreground"
                                             style={{ ...style }}
                                         ></div>
                                     </div>
@@ -265,9 +265,12 @@ function Order() {
                     <div className="infor-order">
                         <div className="top"></div>
                         <div className="wapper infor-product">
-                            {order.orderItems.map((item) => {
+                            {order.orderItems.map((item, index) => {
                                 return (
-                                    <div className="product d-flex align-items-center justify-content-between my-3">
+                                    <div
+                                        key={index}
+                                        className="product d-flex align-items-center justify-content-between my-3"
+                                    >
                                         <div className="infor d-flex align-items-center justify-content-start">
                                             <div className="d-flex">
                                                 <img

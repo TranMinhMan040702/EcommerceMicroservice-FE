@@ -195,13 +195,13 @@ function Delivery() {
                     <div className="row">
                         <div className="col-4">
                             <form action="">
-                                <div class="mb-3">
-                                    <label for="deliveryname" class="form-label">
+                                <div className="mb-3">
+                                    <label for="deliveryname" className="form-label">
                                         Delivery name
                                     </label>
                                     <input
                                         type="text"
-                                        class="form-control"
+                                        className="form-control"
                                         id="deliveryname"
                                         required
                                         placeholder="Enter delivery name"
@@ -210,13 +210,13 @@ function Delivery() {
                                         onChange={(e) => handleChange(e)}
                                     />
                                 </div>
-                                <div class="mb-3">
-                                    <label for="price" class="form-label">
+                                <div className="mb-3">
+                                    <label for="price" className="form-label">
                                         Price
                                     </label>
                                     <input
                                         type="number"
-                                        class="form-control"
+                                        className="form-control"
                                         id="price"
                                         required
                                         placeholder="Enter product price"
@@ -225,12 +225,12 @@ function Delivery() {
                                         onChange={(e) => handleChange(e)}
                                     />
                                 </div>
-                                <div class="mb-3">
-                                    <label for="description" class="form-label">
+                                <div className="mb-3">
+                                    <label for="description" className="form-label">
                                         Description
                                     </label>
                                     <textarea
-                                        class="form-control"
+                                        className="form-control"
                                         id="description"
                                         rows="5"
                                         required
@@ -244,14 +244,14 @@ function Delivery() {
                                     {!isEdit ? (
                                         <button
                                             onClick={(e) => AddDelivery(e)}
-                                            class="btn btn-success text-white"
+                                            className="btn btn-success text-white"
                                         >
                                             Create Delivery
                                         </button>
                                     ) : (
                                         <button
                                             onClick={(e) => EditDelivery(e)}
-                                            class="btn btn-warning text-white"
+                                            className="btn btn-warning text-white"
                                         >
                                             Edit Delivery
                                         </button>
@@ -259,7 +259,7 @@ function Delivery() {
                                     <button
                                         onClick={(e) => DeleteManyDelivery(e)}
                                         type="submit"
-                                        class="btn btn-danger"
+                                        className="btn btn-danger"
                                     >
                                         Delete Delivery
                                     </button>

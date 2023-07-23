@@ -46,9 +46,9 @@ function Navbar() {
                     <div className="item">
                         <span>English</span>
                     </div>
-                    <div class="dropdown">
+                    <div className="dropdown">
                         <div
-                            class="avatar"
+                            className="avatar"
                             type="button"
                             id="dropdownAccount"
                             data-bs-toggle="dropdown"
@@ -57,14 +57,14 @@ function Navbar() {
                             <img className="w-100 h-100" src={images.noAvatar} alt="" />
                         </div>
                         <ul
-                            class="dropdown-menu dropdown-menu-lg-end dropdown-account"
+                            className="dropdown-menu dropdown-menu-lg-end dropdown-account"
                             aria-labelledby="dropdownAccount"
                         >
                             <li>
-                                <Link class="dropdown-item">My Profile</Link>
+                                <Link className="dropdown-item">My Profile</Link>
                             </li>
                             <li>
-                                <Link onClick={(e) => handleLogout(e)} class="dropdown-item">
+                                <Link onClick={(e) => handleLogout(e)} className="dropdown-item">
                                     Logout
                                 </Link>
                             </li>

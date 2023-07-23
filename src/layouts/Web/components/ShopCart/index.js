@@ -51,10 +51,10 @@ function ShopCart() {
                 {cart.length !== 0 ? (
                     <>
                         <div className="cart-list">
-                            {cart.map((item, i) => {
+                            {cart.map((item, index) => {
                                 return (
                                     <CartItem
-                                        key={i}
+                                        key={index}
                                         item={item}
                                         handleIncreaseCount={handleIncreaseCount}
                                         handleDecreaseCount={handleDecreaseCount}

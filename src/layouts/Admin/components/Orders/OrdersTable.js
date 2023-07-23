@@ -110,7 +110,7 @@ function OrdersTable() {
                     {loading ? (
                         <Loading />
                     ) : orders.length > 0 ? (
-                        <table class="table table-striped">
+                        <table className="table table-striped">
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>

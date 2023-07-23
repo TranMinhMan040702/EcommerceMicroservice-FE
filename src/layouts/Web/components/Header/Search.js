@@ -14,7 +14,7 @@ import { useSelector } from 'react-redux';
 import { cartUser, accountUser } from '../../../../redux/selectors';
 import { useDispatch } from 'react-redux';
 import { RequestParamContext } from '../../../../context';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 import { over } from 'stompjs';
 import SockJS from 'sockjs-client';
@@ -29,34 +29,23 @@ function Search() {
     const { params, setParams } = useContext(RequestParamContext);
     const [notifications, setNotifications] = useState([]);
     const [notificationNew, setNotificationNew] = useState(null);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         connect();
     }, []);
     useEffect(() => {
-        getAllNotification();
+        if (Object.keys(account).length !== 0) {
+            getAllNotification();
+        }
     }, [account]);
-    useEffect(() => {
-        displayNotifications();
-    }, [loading]);
+
+    console.log(account);
 
     useEffect(() => {
         if (notificationNew != null) {
             toast.warning(notificationNew.message);
         }
     }, [notificationNew]);
-    const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-    const displayNotifications = async () => {
-        if (notifications.length > 0) {
-            for (const notification of notifications) {
-                if (!notification.status) {
-                    toast.warning(notification.message);
-                    await wait(500);
-                }
-            }
-        }
-    };
 
     const connect = () => {
         let Sock = new SockJS('http://localhost:8089/ws');
@@ -82,7 +71,6 @@ function Search() {
         try {
             const response = await NotificationService.getAllByRecipientId(account.id);
             setNotifications((prev) => [...prev, ...response.data]);
-            setLoading(true);
         } catch (err) {
             console.log(err);
         }
@@ -126,7 +114,7 @@ function Search() {
             return { ...prev, search: tag.value };
         });
     };
-    console.log(notifications);
+
     return (
         <div className="search">
             <div className="container">

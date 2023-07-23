@@ -72,7 +72,7 @@ function Address({ account }) {
     const modalHeader = 'Địa chỉ mới';
     const modalBody = (
         <form style={{ padding: '20px' }}>
-            <div class="mb-3">
+            <div className="mb-3">
                 <input
                     type="text"
                     className="w-100"
@@ -83,7 +83,7 @@ function Address({ account }) {
                     onChange={(e) => handleChange(e)}
                 />
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
                 <input
                     type="text"
                     className="w-100"
@@ -95,7 +95,7 @@ function Address({ account }) {
                 />
             </div>
             <div className="row mb-3">
-                <div class="col-md-4">
+                <div className="col-md-4">
                     <input
                         type="text"
                         className="w-100"
@@ -106,7 +106,7 @@ function Address({ account }) {
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
-                <div class="col-md-4">
+                <div className="col-md-4">
                     <input
                         type="text"
                         className="w-100"
@@ -117,7 +117,7 @@ function Address({ account }) {
                         onChange={(e) => handleChange(e)}
                     />
                 </div>
-                <div class="col-md-4">
+                <div className="col-md-4">
                     <input
                         type="text"
                         className="w-100"
@@ -129,7 +129,7 @@ function Address({ account }) {
                     />
                 </div>
             </div>
-            <div class="mb-3">
+            <div className="mb-3">
                 <textarea
                     type="text"
                     className="w-100"
@@ -140,7 +140,7 @@ function Address({ account }) {
                     onChange={(e) => handleChange(e)}
                 />
             </div>
-            <div class="mb-3 d-flex align-items-center">
+            <div className="mb-3 d-flex align-items-center">
                 <input
                     type="checkbox"
                     id="status"
@@ -161,7 +161,7 @@ function Address({ account }) {
         <>
             <button
                 type="button"
-                class="btn btn-sm btn-secondary modal-address"
+                className="btn btn-sm btn-secondary modal-address"
                 data-bs-dismiss="modal"
                 onClick={() => clearedData()}
             >
@@ -171,7 +171,7 @@ function Address({ account }) {
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
                 data-bs-dismiss="modal"
-                class="btn btn-sm btn-success"
+                className="btn btn-sm btn-success"
             >
                 Tải lên
             </button>
@@ -187,7 +187,7 @@ function Address({ account }) {
                         <h5>Địa chỉ của tôi</h5>
                         <button
                             type="button"
-                            class="btn btn-success"
+                            className="btn btn-success"
                             data-bs-toggle="modal"
                             data-bs-target="#modal-address"
                         >
@@ -225,7 +225,7 @@ function Address({ account }) {
                                                 <div className="modify d-flex justify-content-end">
                                                     <button
                                                         type="button"
-                                                        class="btn btn-link mb-1 text-decoration-none"
+                                                        className="btn btn-link mb-1 text-decoration-none"
                                                         data-bs-toggle="modal"
                                                         data-bs-target="#modal"
                                                         onClick={() => handleUpdateAddress(address)}
@@ -235,7 +235,7 @@ function Address({ account }) {
                                                     {!address.status && (
                                                         <button
                                                             type="button"
-                                                            class="btn btn-link mb-1 text-decoration-none"
+                                                            className="btn btn-link mb-1 text-decoration-none"
                                                             onClick={(e) =>
                                                                 handleDeleteAddress(e, address.id)
                                                             }
@@ -246,7 +246,7 @@ function Address({ account }) {
                                                 </div>
                                                 <button
                                                     type="button"
-                                                    class="btn btn-sm btn-outline-secondary"
+                                                    className="btn btn-sm btn-outline-secondary"
                                                     disabled={address.status}
                                                     onClick={() => handleSetDefaultAddress(address)}
                                                 >

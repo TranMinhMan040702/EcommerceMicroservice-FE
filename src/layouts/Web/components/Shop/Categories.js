@@ -38,9 +38,10 @@ function Categories({ params, setParams }) {
                     Tất cả
                 </span>
                 {categorise &&
-                    categorise.map((category) => {
+                    categorise.map((category, index) => {
                         return (
                             <span
+                                key={index}
                                 className="category-item"
                                 id={category.id}
                                 onClick={(e) => handleClick(e)}
