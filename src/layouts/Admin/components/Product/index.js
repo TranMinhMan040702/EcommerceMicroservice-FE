@@ -103,9 +103,9 @@ function Product() {
                                     >
                                         <option value="">Tất cả</option>
                                         {categories &&
-                                            categories.map((category) => {
+                                            categories.map((category, index) => {
                                                 return (
-                                                    <option value={category.id}>
+                                                    <option key={index} value={category.id}>
                                                         {category.name}
                                                     </option>
                                                 );
@@ -128,9 +128,9 @@ function Product() {
                         <div className="card-body">
                             {products.length > 0 ? (
                                 <div className="row">
-                                    {products.map((product) => {
+                                    {products.map((product, index) => {
                                         return (
-                                            <div className="col-lg-3 mb-5">
+                                            <div key={index} className="col-lg-3 mb-5">
                                                 <div className="card shadow-sm">
                                                     <Link className="img-wrap">
                                                         <img

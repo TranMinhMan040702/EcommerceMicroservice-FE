@@ -199,8 +199,8 @@ function Category() {
                         <div className="col-4">
                             <div className="create-category">
                                 <form action="">
-                                    <div class="mb-3">
-                                        <label for="categoryname" class="form-label">
+                                    <div className="mb-3">
+                                        <label for="categoryname" className="form-label">
                                             Category Name
                                         </label>
                                         <input
@@ -214,8 +214,8 @@ function Category() {
                                             onChange={(e) => handleChange(e)}
                                         />
                                     </div>
-                                    <div class="mb-3">
-                                        <label for="categoryname" class="form-label">
+                                    <div className="mb-3">
+                                        <label for="categoryname" className="form-label">
                                             Category Image
                                         </label>
                                         <input
@@ -243,21 +243,21 @@ function Category() {
                                         {!isEdit ? (
                                             <button
                                                 onClick={(e) => handleSubmit(e)}
-                                                class="btn btn-success"
+                                                className="btn btn-success"
                                             >
                                                 Create Category
                                             </button>
                                         ) : (
                                             <button
                                                 onClick={(e) => handleSubmit(e)}
-                                                class="btn btn-warning text-white"
+                                                className="btn btn-warning text-white"
                                             >
                                                 Edit Category
                                             </button>
                                         )}
                                         <button
                                             onClick={(e) => DeleteManyCategory(e)}
-                                            class="btn btn-danger"
+                                            className="btn btn-danger"
                                         >
                                             Delete Category
                                         </button>

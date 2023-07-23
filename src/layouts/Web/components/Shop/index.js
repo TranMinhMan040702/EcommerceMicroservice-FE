@@ -73,7 +73,7 @@ function Shop() {
                                 </div>
                                 <div className="col-md-3">
                                     <select
-                                        class="form-select form-select-sm"
+                                        className="form-select form-select-sm"
                                         name="sortBy"
                                         onChange={(e) => handleChange(e)}
                                     >
@@ -85,7 +85,7 @@ function Shop() {
                                 </div>
                                 <div className="col-md-3">
                                     <select
-                                        class="form-select form-select-sm"
+                                        className="form-select form-select-sm"
                                         name="limit"
                                         onChange={(e) => handleChange(e)}
                                     >
@@ -103,9 +103,9 @@ function Shop() {
                             <>
                                 <div className="product-content">
                                     <div className="row">
-                                        {products.map((product) => {
+                                        {products.map((product, index) => {
                                             return (
-                                                <div className="col-lg-4">
+                                                <div key={index} className="col-lg-4">
                                                     <ProductCard product={product} />
                                                 </div>
                                             );

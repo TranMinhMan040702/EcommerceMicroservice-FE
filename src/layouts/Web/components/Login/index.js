@@ -41,9 +41,11 @@ function LoginForm() {
                 const refreshToken = response?.data?.refreshToken;
                 const roles = response?.data?.roles;
                 const userId = response?.data?.userId;
+
                 localStorage.setItem('token', accessToken);
                 localStorage.setItem('refreshToken', refreshToken);
                 localStorage.setItem('userId', userId);
+
                 setAuth({ ...user, accessToken, roles, userId });
                 setUser({ email: '', password: '' });
                 // thunk function

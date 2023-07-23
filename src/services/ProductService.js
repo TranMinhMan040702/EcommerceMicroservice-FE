@@ -1,27 +1,22 @@
 import { axiosPrivate } from '../api/axios';
 import axios from '../api/axios';
 
-// http://localhost:9099/api/v1/product-service
-const API_GATEWAY = process.env.REACT_APP_URL_API_GATEWAY;
-const PRODUCT_URL_PRODUCT_SERVICE = API_GATEWAY + process.env.REACT_APP_BASE_URL_PRODUCT_SERVICE;
-const PRODUCT_API_URL_PUBLIC = PRODUCT_URL_PRODUCT_SERVICE + '/product/public';
-const PRODUCT_API_URL_ADMIN = PRODUCT_URL_PRODUCT_SERVICE + '/product/admin/products';
-
+const PRODUCT_URL = process.env.REACT_APP_API_GATEWAY + '/api/v1/product-service/product';
 class ProductService {
     getProducts(requestParams) {
-        return axios.get(PRODUCT_API_URL_PUBLIC + '/products/?' + requestParams);
+        return axios.get(PRODUCT_URL + '/public/products?' + requestParams);
     }
     getProductById(id) {
-        return axios.get(PRODUCT_API_URL_PUBLIC + '?id=' + id);
+        return axios.get(PRODUCT_URL + '/public?id=' + id);
     }
     addProduct(product) {
-        return axiosPrivate.post(PRODUCT_API_URL_ADMIN, product);
+        return axiosPrivate.post(PRODUCT_URL + '/admin/products', product);
     }
     updateProduct(product, id) {
-        return axiosPrivate.post(PRODUCT_API_URL_ADMIN + '/' + id, product);
+        return axiosPrivate.post(PRODUCT_URL + '/admin/products/' + id, product);
     }
     deleteProduct(id) {
-        return axiosPrivate.delete(PRODUCT_API_URL_ADMIN + '/' + id);
+        return axiosPrivate.delete(PRODUCT_URL + '/admin/products/' + id);
     }
 }
 

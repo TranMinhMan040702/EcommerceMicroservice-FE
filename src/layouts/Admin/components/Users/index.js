@@ -90,9 +90,9 @@ function Users() {
                 <div className="card-body">
                     <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4">
                         {users &&
-                            users.map((user) => {
+                            users.map((user, index) => {
                                 return (
-                                    <div className="col">
+                                    <div key={index} className="col">
                                         <div className="card card-user shadow-sm">
                                             <div className="card-header card-header-user">
                                                 <img

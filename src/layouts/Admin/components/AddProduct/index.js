@@ -138,13 +138,13 @@ function AddProduct() {
                 <div className="card-body">
                     <form enctype="multipart/form-data">
                         <div className="row">
-                            <div class="mb-3 col-lg-6">
-                                <label for="productname" class="form-label">
+                            <div className="mb-3 col-lg-6">
+                                <label for="productname" className="form-label">
                                     Product name
                                 </label>
                                 <input
                                     type="text"
-                                    class="form-control"
+                                    className="form-control"
                                     id="productname"
                                     required
                                     placeholder="Enter product name"
@@ -153,19 +153,20 @@ function AddProduct() {
                                     onChange={(e) => handleChange(e)}
                                 />
                             </div>
-                            <div class="mb-3 col-lg-6">
-                                <label for="categoryid" class="form-label">
+                            <div className="mb-3 col-lg-6">
+                                <label for="categoryid" className="form-label">
                                     Category
                                 </label>
                                 <select
                                     onChange={(e) => handleChange(e)}
-                                    class="form-select"
+                                    className="form-select"
                                     name="category"
                                 >
                                     <option selected>Chọn thể loại</option>
-                                    {categorise.map((category) => {
+                                    {categorise.map((category, index) => {
                                         return (
                                             <option
+                                                key={index}
                                                 selected={category.id === categoryState.id}
                                                 value={category.id}
                                             >
@@ -175,13 +176,13 @@ function AddProduct() {
                                     })}
                                 </select>
                             </div>
-                            <div class="mb-3 col-lg-6">
-                                <label for="price" class="form-label">
+                            <div className="mb-3 col-lg-6">
+                                <label for="price" className="form-label">
                                     Price
                                 </label>
                                 <input
                                     type="number"
-                                    class="form-control"
+                                    className="form-control"
                                     id="price"
                                     required
                                     placeholder="Enter product price"
@@ -190,13 +191,13 @@ function AddProduct() {
                                     onChange={(e) => handleChange(e)}
                                 />
                             </div>
-                            <div class="mb-3 col-lg-6">
-                                <label for="promotionalPrice" class="form-label">
+                            <div className="mb-3 col-lg-6">
+                                <label for="promotionalPrice" className="form-label">
                                     Promotional Price
                                 </label>
                                 <input
                                     type="number"
-                                    class="form-control"
+                                    className="form-control"
                                     id="promotionalPrice"
                                     required
                                     placeholder="Enter product promotional price"
@@ -205,13 +206,13 @@ function AddProduct() {
                                     onChange={(e) => handleChange(e)}
                                 />
                             </div>
-                            <div class="mb-3 col-lg-6">
-                                <label for="quantity" class="form-label">
+                            <div className="mb-3 col-lg-6">
+                                <label for="quantity" className="form-label">
                                     Quantity
                                 </label>
                                 <input
                                     type="number"
-                                    class="form-control"
+                                    className="form-control"
                                     id="quantity"
                                     required
                                     placeholder="Enter product quantity"
@@ -220,8 +221,8 @@ function AddProduct() {
                                     onChange={(e) => handleChange(e)}
                                 />
                             </div>
-                            <div class="mb-3">
-                                <label for="description" class="form-label">
+                            <div className="mb-3">
+                                <label for="description" className="form-label">
                                     Description
                                 </label>
                                 <CKEditor
@@ -242,18 +243,18 @@ function AddProduct() {
                                     }}
                                 ></CKEditor>
                             </div>
-                            <div class="mb-3">
-                                <label for="formFileMultiple" class="form-label">
+                            <div className="mb-3">
+                                <label for="formFileMultiple" className="form-label">
                                     Chooses image for product
                                 </label>
                                 <div className="row">
-                                    {[1, 2, 3, 4].map((item) => {
+                                    {[1, 2, 3, 4].map((item, index) => {
                                         return (
-                                            <div className="col-lg-3">
+                                            <div className="col-lg-3" key={index}>
                                                 <input
                                                     accept="image/*"
                                                     onChange={handleUploadClick}
-                                                    class="form-control"
+                                                    className="form-control"
                                                     type="file"
                                                     name={`image${item}`}
                                                 />
@@ -315,7 +316,10 @@ function AddProduct() {
                                 </div>
                             </div>
                             <div className="md-3 d-flex justify-content-end">
-                                <button onClick={(e) => PublicProduct(e)} class="btn btn-success">
+                                <button
+                                    onClick={(e) => PublicProduct(e)}
+                                    className="btn btn-success"
+                                >
                                     Submit
                                 </button>
                             </div>

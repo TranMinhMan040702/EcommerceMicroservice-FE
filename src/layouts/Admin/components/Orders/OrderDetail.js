@@ -42,7 +42,7 @@ function OrderDetail({ orderId }) {
         if (paidBefore) {
             return (
                 <span
-                    class="badge rounded-pill alert alert-success text-success"
+                    className="badge rounded-pill alert alert-success text-success"
                     style={{ padding: '10px' }}
                 >
                     Đã thanh toán
@@ -51,7 +51,7 @@ function OrderDetail({ orderId }) {
         } else {
             return (
                 <span
-                    class="badge rounded-pill alert alert-danger text-danger"
+                    className="badge rounded-pill alert alert-danger text-danger"
                     style={{ padding: '10px' }}
                 >
                     Chưa thanh toán
@@ -190,7 +190,10 @@ function OrderDetail({ orderId }) {
                             </div>
                             <div className="row">
                                 <div className="col-lg-9">
-                                    <table class="table" style={{ border: '1px solid #f2f2f2' }}>
+                                    <table
+                                        className="table"
+                                        style={{ border: '1px solid #f2f2f2' }}
+                                    >
                                         <thead>
                                             <tr>
                                                 <th scope="col">Sản phẩm</th>
@@ -200,16 +203,16 @@ function OrderDetail({ orderId }) {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {order.orderItems.map((item) => {
+                                            {order.orderItems.map((item, index) => {
                                                 return (
-                                                    <tr>
+                                                    <tr key={index}>
                                                         <td>
                                                             <div className="d-flex align-items-center">
                                                                 <div className="img">
                                                                     <img
                                                                         src={item.product.images[0]}
                                                                         alt="product"
-                                                                        class="img-xs"
+                                                                        className="img-xs"
                                                                         style={{
                                                                             width: '40px',
                                                                             height: '40px',
@@ -311,7 +314,7 @@ function OrderDetail({ orderId }) {
                                                                 }}
                                                             >
                                                                 <b
-                                                                    class="h5"
+                                                                    className="h5"
                                                                     style={{
                                                                         color: '#b6092e',
                                                                         fontWeight: '800',
@@ -329,7 +332,7 @@ function OrderDetail({ orderId }) {
                                                                     width: '150px',
                                                                     fontWeight: '400',
                                                                 }}
-                                                                class="text-muted"
+                                                                className="text-muted"
                                                             >
                                                                 Status:
                                                             </dt>
@@ -351,7 +354,7 @@ function OrderDetail({ orderId }) {
                                     </table>
                                 </div>
                                 <div className="col-lg-3">
-                                    <div class="box shadow-sm bg-light">
+                                    <div className="box shadow-sm bg-light">
                                         <button
                                             className="btn btn-dark col-12"
                                             disabled={

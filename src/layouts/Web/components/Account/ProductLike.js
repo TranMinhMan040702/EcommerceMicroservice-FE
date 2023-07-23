@@ -53,9 +53,12 @@ function ProductLike({ account }) {
                     </div>
                     <div className="product-like-list">
                         {productLikes.length > 0 ? (
-                            productLikes.map((product) => {
+                            productLikes.map((product, index) => {
                                 return (
-                                    <div className="cart-details d-flex align-items-center justify-content-between my-3">
+                                    <div
+                                        key={index}
+                                        className="cart-details d-flex align-items-center justify-content-between my-3"
+                                    >
                                         <div className="infor d-flex align-items-center justify-content-start">
                                             <div className="cart-image d-flex">
                                                 <img
