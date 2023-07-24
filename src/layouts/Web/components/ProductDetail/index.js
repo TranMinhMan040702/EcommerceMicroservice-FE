@@ -69,7 +69,7 @@ function ProductDetail() {
         toast.success(config.message.success.addToCart);
     };
 
-    console.log(product);
+    console.log(reviews);
     return (
         <>
             {!loading ? (

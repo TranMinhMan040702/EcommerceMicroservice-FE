@@ -27,7 +27,7 @@ function Comment({ reviews }) {
                     return (
                         <div key={index} className="comment d-flex justify-content-between">
                             <div className="comment-info d-flex flex-column justify-content-start align-items-center">
-                                <h5>{review.user.firstname + ' ' + review.user.lastname}</h5>
+                                <h5>{review.user.firstName + ' ' + review.user.lastName}</h5>
                                 <div className="image">
                                     <img
                                         src={

@@ -52,7 +52,7 @@ function ProductLike({ account }) {
                         <h5>Sản phẩm yêu thích của tôi</h5>
                     </div>
                     <div className="product-like-list">
-                        {productLikes.length > 0 ? (
+                        {productLikes != null && productLikes.length > 0 ? (
                             productLikes.map((product, index) => {
                                 return (
                                     <div
