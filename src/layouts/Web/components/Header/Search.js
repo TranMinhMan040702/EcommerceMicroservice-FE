@@ -80,6 +80,7 @@ function Search() {
         return notifications.filter((notification) => !notification.status).length;
     };
 
+    // Handle logout
     const handleLogout = (e) => {
         e.preventDefault();
         logout({
@@ -93,7 +94,7 @@ function Search() {
     };
     const logout = async (tokenRequest) => {
         try {
-            await AuthService.logout(tokenRequest);
+            // await AuthService.logout(tokenRequest);
             localStorage.clear();
         } catch (err) {
             console.error(err);
