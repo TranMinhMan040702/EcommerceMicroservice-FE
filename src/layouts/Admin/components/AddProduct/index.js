@@ -61,10 +61,16 @@ function AddProduct() {
                 });
         }
     }, []);
+
+    console.log(product);
+    console.log(images);
+    console.log(categoryState);
+
     const handleChange = (e) => {
         setProduct({ ...product, [e.target.name]: e.target.value });
         setCategoryState(e.target.value);
     };
+
     const handleUploadClick = (e) => {
         setImages((prev) => {
             if (prev.length === 0 || !prev.find((item) => item.name === e.target.name)) {
@@ -87,6 +93,7 @@ function AddProduct() {
             }
         });
     };
+
     useEffect(() => {
         return () => {
             images && URL.revokeObjectURL(preview);
