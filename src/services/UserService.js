@@ -11,12 +11,12 @@ class UserService {
     updateUser(user) {
         return axiosPrivate.post(USER_URL, user);
     }
-    // resetPassword(resetPassword) {
-    //     return axiosPrivate.post(URL_RESETPASSWORD, resetPassword);
-    // }
-    // forgotPassword(resetPassword) {
-    //     return axios.post(URL_FORGOTPASSWORD, resetPassword);
-    // }
+    resetPassword(resetPassword) {
+        return axiosPrivate.post(USER_URL + '/reset-password', resetPassword);
+    }
+    sendMailForgotPassword(email) {
+        return axiosPrivate.post(USER_URL + '/send-mail/forgot-password/' + email);
+    }
 }
 
 export default new UserService();
