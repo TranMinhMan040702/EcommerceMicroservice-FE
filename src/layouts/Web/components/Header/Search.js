@@ -1,3 +1,4 @@
+/* eslint-disable no-const-assign */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useContext, useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
@@ -7,7 +8,6 @@ import config from '../../../../config';
 import images from '../../../../assets/images';
 import accountSlice from '../../../../redux/slice/accountSlice';
 import cartSlice from '../../../../redux/slice/cartSlice';
-import AuthService from '../../../../services/AuthService';
 import NotificationService from '../../../../services/NotificationService';
 import { useAuth } from '../../../../hooks';
 import { useSelector } from 'react-redux';
@@ -15,10 +15,10 @@ import { cartUser, accountUser } from '../../../../redux/selectors';
 import { useDispatch } from 'react-redux';
 import { RequestParamContext } from '../../../../context';
 import { toast } from 'react-toastify';
-
 import { over } from 'stompjs';
 import SockJS from 'sockjs-client';
 
+const SERVER_URL = 'http://localhost:8089/ws';
 var stompClient = null;
 function Search() {
     const navigate = useNavigate();
@@ -26,20 +26,41 @@ function Search() {
     const account = useSelector(accountUser);
     const dispath = useDispatch();
     const { auth, setAuth } = useAuth();
-    const { params, setParams } = useContext(RequestParamContext);
+    const { setParams } = useContext(RequestParamContext);
     const [notifications, setNotifications] = useState([]);
     const [notificationNew, setNotificationNew] = useState(null);
 
     useEffect(() => {
-        connect();
-    }, []);
-    useEffect(() => {
         if (Object.keys(account).length !== 0) {
             getAllNotification();
+            let Sock = new SockJS(SERVER_URL);
+            stompClient = over(Sock);
+            stompClient.connect(
+                {},
+                () => {
+                    stompClient.subscribe(
+                        '/user/' + account.id + '/topic/notification',
+                        (payload) => {
+                            const notification = JSON.parse(payload.body);
+                            setNotifications((prev) => [...prev, notification]);
+                            setNotificationNew(notification);
+                        },
+                    );
+                },
+                (error) => {
+                    console.log(error);
+                },
+            );
         }
     }, [account]);
 
     console.log(account);
+
+    useEffect(() => {
+        if (Object.keys(account).length !== 0) {
+            getAllNotification();
+        }
+    }, []);
 
     useEffect(() => {
         if (notificationNew != null) {
@@ -47,40 +68,22 @@ function Search() {
         }
     }, [notificationNew]);
 
-    const connect = () => {
-        let Sock = new SockJS('http://localhost:8089/ws');
-        stompClient = over(Sock);
-        stompClient.connect({}, onConnected, onError);
-    };
-
-    const onConnected = () => {
-        stompClient.subscribe('/topic/notification', onMessageReceived);
-    };
-
-    const onMessageReceived = (payload) => {
-        const notification = JSON.parse(payload.body);
-        setNotifications((prevNotifications) => [...prevNotifications, notification]);
-        setNotificationNew(notification);
-    };
-
-    const onError = (err) => {
-        console.log(err);
-    };
-
     const getAllNotification = async () => {
         try {
             const response = await NotificationService.getAllByRecipientId(account.id);
-            setNotifications((prev) => [...prev, ...response.data]);
+            setNotifications([...response.data]);
         } catch (err) {
             console.log(err);
         }
     };
 
+    console.log(notifications);
+    console.log(notifications.length);
+
     const handleNotification = () => {
         return notifications.filter((notification) => !notification.status).length;
     };
 
-    // Handle logout
     const handleLogout = (e) => {
         e.preventDefault();
         logout({
@@ -90,8 +93,10 @@ function Search() {
         dispath(accountSlice.actions.clearedAccount({}));
         dispath(cartSlice.actions.clearedCart({}));
         setAuth({});
+        setNotifications([]);
         navigate('/login', { replace: true });
     };
+
     const logout = async (tokenRequest) => {
         try {
             // await AuthService.logout(tokenRequest);
@@ -100,15 +105,18 @@ function Search() {
             console.error(err);
         }
     };
+
     const handleTotalCartItems = (cart) => {
         if (cart.length > 0) {
             return cart.reduce((acc, cur) => acc + cur.count, 0);
         }
         return 0;
     };
+
     const handleAvatar = () => {
         return account.avatar ? account.avatar : images.noAvatar;
     };
+
     const handleSearch = (e) => {
         const tag = document.getElementById('search-main');
         setParams((prev) => {
@@ -119,7 +127,6 @@ function Search() {
     return (
         <div className="search">
             <div className="container">
-                {/* <ToastContainer autoClose={300} pauseOnHover={false} /> */}
                 <div className="row">
                     <div className="col-md-3">
                         <Link
