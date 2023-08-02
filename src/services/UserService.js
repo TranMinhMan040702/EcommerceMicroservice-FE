@@ -15,7 +15,10 @@ class UserService {
         return axiosPrivate.post(USER_URL + '/reset-password', resetPassword);
     }
     sendMailForgotPassword(email) {
-        return axiosPrivate.post(USER_URL + '/send-mail/forgot-password/' + email);
+        return axiosPrivate.post(USER_URL + '/send-mail/forgot-password?email=' + email);
+    }
+    saveNewPassword(resetPasswordRequest) {
+        return axiosPrivate.post(USER_URL + '/save/new-password', resetPasswordRequest);
     }
 }
 

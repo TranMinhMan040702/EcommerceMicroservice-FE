@@ -7,6 +7,7 @@ import { accountUser } from '../../../../redux/selectors';
 import hiddenEmail from '../../../../utils/hiddenEmail';
 import { useState } from 'react';
 import EmailService from '../../../../services/EmailService';
+import UserService from '../../../../services/UserService';
 import Loading from '../../../../components/Loading';
 import SendEmailSuccess from './SendEmailSuccess';
 
@@ -25,7 +26,7 @@ function ForgotPassword() {
         e.preventDefault();
         try {
             setLoading(true);
-            await EmailService.sendEmailForgotPassword(email);
+            await UserService.sendMailForgotPassword(email);
             setLoading(false);
             setSuccess(true);
         } catch (err) {
