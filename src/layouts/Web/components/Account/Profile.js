@@ -24,7 +24,7 @@ function Profile({ account }) {
     const [preview, setPreview] = useState(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        if (account) {
+        if (Object.keys(account).length !== 0) {
             setUser({
                 id: account.id,
                 firstName: account.firstName,
@@ -39,6 +39,7 @@ function Profile({ account }) {
         }
         setLoading(false);
     }, [account]);
+
     useEffect(() => {
         if (user.avatar) {
             setAvatar(() => {
@@ -102,6 +103,7 @@ function Profile({ account }) {
             }
         }
     };
+
     return (
         <>
             {loading ? (
