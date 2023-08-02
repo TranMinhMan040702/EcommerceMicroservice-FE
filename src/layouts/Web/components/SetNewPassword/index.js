@@ -63,7 +63,8 @@ function SetNewPassword() {
     const handleSetNewPassword = async (e) => {
         e.preventDefault();
         try {
-            const response = await UserService.forgotPassword(resetPassword);
+            const response = await UserService.saveNewPassword(resetPassword);
+            console.log(response.data);
             if (response.data.status === 200) {
                 handleLogout();
             }
@@ -72,7 +73,6 @@ function SetNewPassword() {
         }
     };
 
-    console.log(resetPassword);
     return (
         <div className="login-register background" style={{ height: '100vh' }}>
             <div className="wapper" style={{ minHeight: '200px', paddingBottom: '60px' }}>
@@ -85,20 +85,6 @@ function SetNewPassword() {
                     </button>
                     <h3 style={{ width: '80%' }}>Thiết lập mật khẩu</h3>
                 </header>
-                <div className="text-center">
-                    <p style={{ margin: '15px 0 0 0' }}>Tạo mật khẩu mới cho</p>
-                    <p
-                        style={{
-                            position: 'none',
-                            padding: '0',
-                            margin: '0',
-                            fontSize: '14px',
-                            color: 'var(--primary-color-web)',
-                        }}
-                    >
-                        cristran040702@gmail.com
-                    </p>
-                </div>
                 <form>
                     <div className="d-flex justify-content-between align-items-center">
                         <input
